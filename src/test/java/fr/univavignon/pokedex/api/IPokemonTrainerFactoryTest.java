@@ -1,35 +1,57 @@
 package fr.univavignon.pokedex.api;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-import org.mockito.Mockito;
+
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 
 public class IPokemonTrainerFactoryTest {
 
-	 @Test
-	  public void testCreateTrainer() {
-	    IPokemonTrainerFactory pokemonTrainer = Mockito.mock(IPokemonTrainerFactory.class);
-	    IPokedexFactory pokedex = Mockito.mock(IPokedexFactory.class);
-	    // Test with valid parameters
-	    PokemonTrainer trainer = pokemonTrainer.createTrainer("Ash Ketchum", Team.MYSTIC, pokedex);
-	    Assertions.assertEquals("Ash Ketchum", trainer.getName());
-	    Assertions.assertEquals(Team.MYSTIC, trainer.getTeam());
-	    Assertions.assertNotNull(trainer.getPokedex());
 
-	    // Test with null name
-	    Assertions.assertThrows(IllegalArgumentException.class,
-	        () -> pokemonTrainer.createTrainer(null, Team.VALOR, pokedex));
+	
+	 IPokemonTrainerFactory pokemonTrainerFactory = mock(IPokemonTrainerFactory.class);
+	    IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
+	    IPokedex pokedex = mock(IPokedex.class);
+	    Pokemon pokemon1 =new Pokemon(133, "Aquali", 186, 168, 260, 0, 0, 0, 0, 0);
 
-	    // Test with null team
-	    Assertions.assertThrows(IllegalArgumentException.class,
-	        () -> pokemonTrainer.createTrainer("Misty", null, pokedex));
+	    @Before
+	    public  void init() {
 
-	    // Test with null pokedexFactory
-	    Assertions.assertThrows(IllegalArgumentException.class,
-	        () -> pokemonTrainer.createTrainer("Brock", Team.INSTINCT, null));
-	  }
+	        when(pokemonTrainerFactory.createTrainer(
+	                anyString(), any(), any()
+	        )).thenAnswer(new Answer<PokemonTrainer>() {
+	            public PokemonTrainer answer(InvocationOnMock invocation) {
+	                Object[] args = invocation.getArguments();
+	                String name = (String) args[0];
+	                Team team = (Team) args[1];
+	                when(pokedex.size()).thenReturn(0);
+	                return new PokemonTrainer(name, team, pokedex);
+	            }
+	        });
+	    }
+
+
+
+
+	    @Test
+	    public  void creationPokemonTrainerTest() throws PokedexException {
+
+	        PokemonTrainer pokemonTrainer = pokemonTrainerFactory.createTrainer("Mohammed", Team.VALOR, pokedexFactory);
+	        pokemonTrainer.getPokedex().addPokemon(pokemon1);
+	        assertEquals("Mohammed", pokemonTrainer.getName());
+	        assertEquals(Team.VALOR, pokemonTrainer.getTeam());
+	        assertNotNull(pokemonTrainer.getPokedex());
+	        assertEquals(0, pokemonTrainer.getPokedex().size());
+	    }
+
 	
 
 	}

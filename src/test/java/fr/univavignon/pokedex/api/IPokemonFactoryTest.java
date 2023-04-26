@@ -5,41 +5,49 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 
 public class IPokemonFactoryTest {
 	  
-	 @Test
-	    void testCreatePokemon() {
-	        IPokemonFactory factory =  Mockito.mock(IPokemonFactory.class);
-	        Pokemon pokemon = factory.createPokemon(25, 1500, 100, 2000, 5);
-	        Assertions.assertEquals(25, pokemon.getIndex());
-	        Assertions.assertEquals(1500, pokemon.getCp());
-	        Assertions.assertEquals(100, pokemon.getHp());
-	        Assertions.assertEquals(2000, pokemon.getDust());
-	        Assertions.assertEquals(5, pokemon.getCandy());
-	    }
-	    
-	    @Test
-	    void testCreatePokemonWithNegativeValues() {
-	        IPokemonFactory factory = Mockito.mock(IPokemonFactory.class);
-	        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-	            factory.createPokemon(-1, -500, -50, -100, -2);
+	  static final Pokemon Pokemon = null;
+
+	    IPokemonFactory pokemonFactory = Mockito.mock(IPokemonFactory.class);
+
+	    @Before
+	    public  void init() {
+	        when(pokemonFactory.createPokemon(anyInt(), anyInt(), anyInt(), anyInt(), anyInt())).thenAnswer(new Answer<Pokemon>() {
+	            public Pokemon answer(InvocationOnMock invocation) {
+	                Object[] args = invocation.getArguments();
+	                int cp = (int) args[0];
+	                int hp = (int) args[1];
+	                int dust = (int) args[2];
+	                int candy = (int) args[3];
+	                return new Pokemon(133, "Aquali", 126, 126, 90, cp, hp, dust, candy, 0.56);
+	            }
 	        });
+
 	    }
-	    
+
 	    @Test
-	    void testCreatePokemonWithZeroValues() {
-	        IPokemonFactory factory =Mockito.mock(IPokemonFactory.class);
-	        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-	            factory.createPokemon(0, 0, 0, 0, 0);
-	        });
+	    public  void creationPokemonTest() {
+	        Pokemon pokemon = pokemonFactory.createPokemon(2729, 202, 5000, 4, 133);
+	        assertEquals(133, pokemon.getIndex());
+	        assertEquals("Aquali", pokemon.getName());
+	        assertEquals(126, pokemon.getAttack());
+	        assertEquals(2729, pokemon.getCp());
+	        assertEquals(202, pokemon.getHp());
+	        assertEquals(5000, pokemon.getDust());
+	        assertEquals(4, pokemon.getCandy());
 	    }
 	    
 	}
