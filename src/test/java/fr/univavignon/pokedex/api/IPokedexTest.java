@@ -117,4 +117,3 @@ public class IPokedexTest {
         assertEquals(pokemons.get(0).getIndex(), 133);
     }
 }
-
