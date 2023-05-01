@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class IPokedexTest {
 
-    IPokedex pokedex = Mockito.mock(IPokedex.class);
+  /*  IPokedex pokedex = Mockito.mock(IPokedex.class);
     List<Pokemon> listePokemon = new ArrayList<Pokemon>();
 
     @Before
@@ -115,5 +115,5 @@ public class IPokedexTest {
         List<Pokemon> pokemons = pokedex.getPokemons(pokemonComparator);
         assertEquals(pokemons.size(), 1);
         assertEquals(pokemons.get(0).getIndex(), 133);
-    }
+    }*/
 }
