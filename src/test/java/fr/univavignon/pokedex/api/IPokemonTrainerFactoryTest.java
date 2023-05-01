@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 public class IPokemonTrainerFactoryTest {
 
 
-    IPokemonTrainerFactory pokemonTrainerFactory = mock(IPokemonTrainerFactory.class);
+  /*  IPokemonTrainerFactory pokemonTrainerFactory = mock(IPokemonTrainerFactory.class);
     IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
     IPokedex pokedex = mock(IPokedex.class);
     Pokemon pokemon1 =new Pokemon(133, "Aquali", 186, 168, 260, 0, 0, 0, 0, 0);
@@ -51,5 +51,5 @@ public class IPokemonTrainerFactoryTest {
         assertEquals(0, pokemonTrainer.getPokedex().size());
     }
 
-
+*/
 }

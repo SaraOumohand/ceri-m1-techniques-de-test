@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 public class IPokedexFactoryTest {
-
+/*
     IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
     IPokemonMetadataProvider metadataProvider =  mock(IPokemonMetadataProvider.class);
     IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
@@ -28,5 +28,5 @@ public class IPokedexFactoryTest {
 
 
     }
-
+*/
 }

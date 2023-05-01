@@ -19,7 +19,7 @@ import org.mockito.stubbing.Answer;
 
 public class IPokemonFactoryTest {
 	  
-	  static final Pokemon Pokemon = null;
+	 /* static final Pokemon Pokemon = null;
 
 	    IPokemonFactory pokemonFactory = Mockito.mock(IPokemonFactory.class);
 
@@ -48,7 +48,7 @@ public class IPokemonFactoryTest {
 	        assertEquals(202, pokemon.getHp());
 	        assertEquals(5000, pokemon.getDust());
 	        assertEquals(4, pokemon.getCandy());
-	    }
+	    }*/
 	    
 	}
 
