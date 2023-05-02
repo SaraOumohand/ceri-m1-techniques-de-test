@@ -1,26 +1,30 @@
-# Fichier workflows/main.yml
+
 name: API workflow
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Test de l'API Maven
+    steps:
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: 7ec54e28-cb30-4efb-b618-615169fad2d8
+  run:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up JDK 18
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
-      - name: Build avec Maven
+          java-version: 18.0.1
+      - name: coverage
+        run: mvn -B clean package -DskipTests
+      - name: Run tests and collect coverage
         run: mvn -B test
-      - name: Upload de la couverture de code vers Codecov
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: 7ec54e28-cb30-4efb-b618-615169fad2d8
