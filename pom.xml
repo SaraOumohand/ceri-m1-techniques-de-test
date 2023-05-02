@@ -34,6 +34,16 @@
     <version>3.9.0</version>
     <scope>test</scope>
 </dependency>
+
+
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.8.1</version>
+    <scope>test</scope>
+</dependency>
+
+
     
 <dependency>
     <groupId>org.jacoco</groupId>
@@ -110,6 +120,29 @@
                 </execution>
             </executions>
         </plugin>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.6.0</version>
+            <executions>
+                <execution>
+                    <id>upload-coverage</id>
+                    <phase>deploy</phase>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                    <configuration>
+          <executable>bash</executable>
+               <arguments>
+                 <argument>-c</argument>
+               <argument>bash -c "curl -s https://codecov.io/bash | bash -s -- -f ${project.build.directory}/site/jacoco/jacoco.xml"</argument>
+                  </arguments>
+              </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+=======
     <plugin>
     <groupId>org.jacoco</groupId>
     <artifactId>jacoco-maven-plugin</artifactId>
