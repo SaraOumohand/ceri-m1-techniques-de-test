@@ -40,7 +40,6 @@
     <artifactId>jacoco-maven-plugin</artifactId>
     <version>0.8.6</version>
 </dependency>
-
   </dependencies>
 
   <build>
@@ -132,10 +131,6 @@
         <destFile>${project.build.directory}/jacoco.exec</destFile>
         <dataFile>${project.build.directory}/jacoco.exec</dataFile>
         <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
-        <reportFormats>
-            <format>html</format>
-            <format>xml</format>
-        </reportFormats>
         <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
     </configuration>
 </plugin>
