@@ -8,3 +8,5 @@ Badge CircleCi: [![CircleCI](https://dl.circleci.com/status-badge/img/gh/SaraOum
 
 Badge pour la couverture de test: [![codecov](https://codecov.io/gh/SaraOumohand/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=LN615B0YQR)](https://codecov.io/gh/SaraOumohand/ceri-m1-techniques-de-test) 
 
+
+[![codecov](https://codecov.io/gh/SaraOumohand/ceri-m1-techniques-de-test/tree/masterceri-m1-techniques-de-test/tree/master/graph/badge.svg)](https://codecov.io/gh/SaraOumohand/ceri-m1-techniques-de-test/tree/master)
