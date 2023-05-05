@@ -2,7 +2,7 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 codecov:
-  token: 7ec54e28-cb30-4efb-b618-615169fad2d8
+  token: 551680fa-249d-4c32-9535-3808af6dbd60
 orbs:
   codecov: codecov/codecov@3.2.2
 # Define a job to be invoked later in a workflow.
